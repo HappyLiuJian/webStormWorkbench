@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--后面查看示例后，认为使用ul比较恰当-->
+    <meta charset="UTF-8">
+    <title>flowerTest</title>
+    <style>
+        *{margin: 0;padding: 0;
+            background-color: #dedede;}
+        .header{width: 80%; left: 10%;
+            background-color: white; position: fixed;top: 0;}
+        .header .menu{background-image: url("select_top.gif");width: 57px;height: 42px;border: none;}
+        .header .search1{position: absolute; top: 7px;background-image: url("input_search.gif");
+            background-repeat: no-repeat; width: 109px; height: 28px; border: none;}
+        .header .search2{position: absolute; top: 7px; left:165px;}
+        .header .logo{position: absolute; left: 47%;}
+        .header .button1{position: absolute; top: 7px; right: 70px;background-image: url("top_btn.gif");
+            width: 54px;height: 30px;border: none;}
+        .header .button2{position: absolute; top: 7px; right: 10px;background-image: url("top_btn.gif");
+            width: 54px;height: 30px;border: none;}
+        .main{width: 900px; margin: 50px auto;}
+        .main .pic{width: 200px;}
+        .main .wrap{width: 200px;margin: 20px 5px 5px;float: left;}
+        h6{color: #333333;margin: -30px 0 0 100px;}
+        .footer{position: absolute; bottom: 0;}
+    </style>
+</head>
+<body>
+<div class="header">
+    <button class="menu" type="button"></button>
+    <!--<img src="select_top.gif" alt="菜单"/>-->
+    <input type="text" class="search1" placeholder="搜索"/>
+    <!--<img class="search1" src="input_search.gif" alt="搜索"/>-->
+    <img class="search2" src="search_btn.gif" alt="点击"/>
+    <img class="logo" src="logo.gif" alt="绿藤"/>
+    <button class="button1" type="button">登录</button>
+    <button class="button2" type="button">注册</button>
+    <!--<img class="button1" src="top_btn.gif" alt="登录"/>-->
+    <!--<img class="button2" src="top_btn.gif" alt="注册"/>-->
+</div>
+<div class="main">
+    <div class="wrap">
+        <img class="pic" src="img_01.jpg" alt=""/>
+        <img src="head_01.jpg" alt=""/>
+        <h6>喵喵上传于15:00</h6>
+    </div>
+    <div class="wrap">
+        <img class="pic" src="img_02.jpg" alt=""/>
+        <img src="head_02.jpg" alt=""/>
+        <h6>Danny上传于12:09</h6>
+    </div>
+    <div class="wrap">
+        <img class="pic" src="img_03.jpg" alt=""/>
+        <img src="head_03.jpg" alt=""/>
+        <h6>毛毛上传于7:23</h6>
+    </div>
+    <div class="wrap">
+        <img class="pic" src="img_04.jpg" alt=""/>
+        <img src="head_04.jpg" alt=""/>
+        <h6>小猴上传于23:40</h6>
+    </div>
+</div>
+<div class="footer">
+    <img src="footer.png" alt=""/>
+</div>
+</body>
+</html>
