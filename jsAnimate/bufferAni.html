@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>缓冲动画</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        #div1{width: 200px; height: 300px; position: relative; left: -200px;top: 0; background-color: red;}
+        #share{width: 20px;height: 50px; background: blue; position: absolute;
+            left: 200px; top: 75px;}
+    </style>
+    <script>
+        var timer = null;
+        window.onload = function () {
+            var div1 = document.getElementById('div1');
+            //div1.onmouseover = startMove;
+            //div1.onmouseout = endMove;
+
+            //这里因为函数要传值，所以这样写，还想要使用this的话，就得在匿名函数里面定义一个var that = this;
+            div1.onmouseover = function () {
+                move(0);
+            };
+            div1.onmouseout = function () {
+                move(-200);
+            };
+        };
+
+        //向右运动
+        function startMove() {
+            var that = this;
+            clearInterval(timer);
+            timer = setInterval(function () {
+                if(that.offsetLeft == 0) {
+                    clearInterval(timer);
+                } else {
+                    that.style.left = that.offsetLeft + 10 + 'px';
+                }
+            }, 30)
+        }
+
+        //向左运动
+        function endMove() {
+            var that = this;
+            clearInterval(timer);
+            timer = setInterval(function () {
+                if(that.offsetLeft == -200) {
+                    clearInterval(timer);
+                } else {
+                    that.style.left = that.offsetLeft - 10 + "px";
+                }
+            },30)
+        }
+
+
+        //封装横向运动
+        function move(target) {
+            clearInterval(timer);
+            var div1 = document.getElementById('div1');
+            //console.log(that);
+            timer = setInterval(function () {
+                var speed = (target - div1.offsetLeft)/20;
+                //修补速度会导致最后不能移动到底的问题
+                speed = speed > 0? Math.ceil(speed): Math.floor(speed);
+                if(div1.offsetLeft == target){
+                    clearInterval(timer);
+                } else {
+                    div1.style.left = div1.offsetLeft + speed + 'px';
+                }
+            },30)
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <span id="share">分享</span>
+</div>
+</body>
+</html>
