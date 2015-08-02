@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js计时效果</title>
+    <script>
+        window.onload = function () {
+            //补齐，避免只显示0,1,2......
+            function checkTime(i) {
+                if(i < 10) {
+                    i = '0' + i;
+                }
+                return i;
+            }
+            //循环显示
+            setInterval(function () {
+                var myDate = new Date();
+                var year = myDate.getFullYear(),
+                        month = myDate.getMonth() + 1,
+                        date = myDate.getDate();
+                var weekday = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+                var day = myDate.getDay();
+                var hour = myDate.getHours(),
+                        min = myDate.getMinutes(),
+                        sec = myDate.getSeconds();
+                hour = checkTime(hour);
+                min = checkTime(min);
+                sec = checkTime(sec);
+                var showDiv = document.getElementById('show');
+                showDiv.innerHTML = year + '年' + month + '月' +
+                        date + '日' + weekday[day] + hour + ':' + min + ':' + sec;
+            },1000);
+        }
+    </script>
+</head>
+<body>
+<div id="content">
+    <div id="show">显示时间</div>
+</div>
+</body>
+</html>
