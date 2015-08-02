@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用marquee标签信息滚动效果</title>
+    <style>
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+    <div>
+        <dl>
+            <dt>文字滚动效果</dt>
+            <dd><marquee behavior="alternate" onmouseover="this.stop()"
+                    onmouseout="this.start()">我滚啦</marquee></dd>
+            <dt>我只滚1次</dt>
+            <dd>
+                <marquee loop="1" direction="right">我只滚1次</marquee></dd>
+        </dl>
+    </div>
+</body>
+</html>
