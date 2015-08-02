@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js动画框架使用案例</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #move {width: 270px; margin: 100px auto;
+            background-color: #dedede;}
+        #move a {width: 50px; height: 80px; float: left; margin-right: 30px;
+            margin-top: 20px; background-color: white;text-decoration: none;
+        position: relative;}
+        #move a p{color: black; text-decoration: none;}
+        #move a i {
+            position: absolute;
+            top: 20px;
+            opacity: 1;
+        }
+        #move a:hover{cursor: pointer;}
+        #move img{border: none;}
+
+    </style>
+    <script type="text/javascript" src="move.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('move');
+            var toMove = oDiv.getElementsByTagName('a');
+            for(var i = 0, l = toMove.length; i < l; i++) {
+                toMove[i].onmouseover = function () {
+                    var iLi = this.getElementsByTagName('i')[0];
+                    startMove(iLi,{top:-20,opacity:0}, function () {
+                        iLi.style.top = 30 + 'px';
+                        startMove(iLi,{top:20,opacity:100});
+                    });
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="move">
+    <a href="#"><i><img src="" alt="彩票"/></i><p>彩票</p></a>
+    <a href="#"><i><img src="" alt="电影"/></i><p>电影</p></a>
+    <a href=""><i><img src="" alt="音乐"/></i><p>音乐</p></a>
+    <a href=""><i><img src="" alt="缴费"/></i><p>缴费</p></a>
+    <a href=""><i><img src="" alt="理财"/></i><p>理财</p></a>
+    <a href=""><i><img src="" alt="外卖"/></i><p>外卖</p></a>
+</div>
+</body>
+</html>
