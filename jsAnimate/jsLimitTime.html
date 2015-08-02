@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js限时请购</title>
+    <script>
+        window.onload = function () {
+            showTime();
+            function showTime() {
+                var curT = new Date();
+                var overT = new Date('2015/12/6,12:20:10');       //带参数初始化
+                var leftT = parseInt(overT.getTime() - curT.getTime());   //毫秒数
+                var day = Math.ceil(leftT/(24*3600*1000));      //转换为天
+                var hour = Math.ceil((leftT/(3600*1000))%24);   //转换为小时，注意模24
+                var min = Math.ceil((leftT/(60*1000))%60);
+                var sec = Math.ceil((leftT/1000)%60);
+                document.getElementById('timeShow').innerHTML = day + '天' + hour + '小时' + min + '分钟' +
+                        + sec + '秒';
+                if(leftT < 0) {
+                    document.getElementById('timeShow').innerHTML = '团购结束，谢谢参与';
+                }
+                setTimeout(showTime,500);
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="content">
+    <div class="txtShow">还剩
+        <span id="timeShow"></span>
+    </div>
+</div>
+</body>
+</html>
