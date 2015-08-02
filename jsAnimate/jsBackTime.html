@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js倒计时效果</title>
+    <script>
+        window.onload = function () {
+            var curT = new Date();
+            var overT = new Date('2015,12,6');       //带参数初始化
+            var leftT = overT.getTime() - curT.getTime();   //毫秒数
+            var day = Math.ceil(leftT/(24*3600*1000));      //转换为天
+            //alert(day);
+            document.getElementById('timeShow').innerHTML = day;
+        }
+    </script>
+</head>
+<body>
+<div class="content">
+    <div class="txtShow">
+        <span id="timeShow">时间</span>
+    </div>
+</div>
+</body>
+</html>
