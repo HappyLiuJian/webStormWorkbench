@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab自动切换效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .notice {
+            width: 298px;
+            height: 98px;
+            margin: 10px;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+
+        .notice-tit {
+            height: 27px;
+            position: relative;
+            background-color: #f7f7f7;
+        }
+
+        .notice-tit ul {
+            position: absolute;
+            width: 301px;
+            left: -1px;
+        }
+
+        .notice-tit li {
+            float: left;
+            width: 58px;    /*298/5,*/
+            height: 26px;   /*保证下面还有一个像素作为边框*/
+            line-height: 26px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid #eeeeee;
+            padding: 0 1px;
+        }
+
+        .notice li a:link, .notice-tit li a:visited {
+            text-decoration: none;
+            color: black;
+        }
+
+        .notice li a:hover {
+            color: #f90;
+        }
+
+        .notice-tit li.select {
+            background-color: #fff;
+            border-bottom-color: white;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eeeeee;
+            padding: 0;
+            font-weight: bolder;
+        }
+
+        .notice-con .mod {
+            margin: 10px 6px;
+        }
+
+        .notice-con .mod li {
+            float: left;
+            width: 143px;
+            height: 25px;
+            overflow: hidden;
+        }
+
+    </style>
+    <script>
+        var timer = null;
+        window.onload = function () {
+            //标签索引
+            var index = 0;
+
+            //获取页签
+            var lis = document.getElementById('notice-tit').getElementsByTagName('li'),
+                    divs = document.getElementById('notice-con').getElementsByTagName('div');
+
+            if(lis.length!=divs.length) {
+                return -1;
+            }
+            timer = setInterval(function () {
+                index++;
+                if(index >= lis.length) {
+                    index = 0;
+                }
+                for(var j = 0; j < lis.length; j++) {
+                    lis[j].className = '';
+                    divs[j].style.display = 'none';
+                }
+                lis[index].className = 'select';
+                divs[index].style.display = 'block';
+            },2000);
+        }
+    </script>
+</head>
+<body>
+<div id="notice" class="notice">
+    <div id="notice-tit" class="notice-tit">
+        <ul>
+            <li class="select"><a href="">公告</a></li>
+            <li><a href="">规则</a></li>
+            <li><a href="">论坛</a></li>
+            <li><a href="">安全</a></li>
+            <li><a href="">公益</a></li>
+        </ul>
+    </div>
+    <div id="notice-con" class="notice-con">
+        <div class="mod" style="display: block;">
+            <ul>
+                <li><a href="">LOL更新啦新模式来袭</a></li>
+                <li><a href="">处罚挂机，严打代练</a></li>
+                <li><a href="">比尔吉沃特事件第三幕</a></li>
+                <li><a href="">拿手的朝鲜族扫荡</a></li>
+            </ul>
+        </div>
+        <div class="mod" style="display: none;">
+            <ul>
+                <li><a href="">那阿斯蒂芬博伊金斯4</a></li>
+                <li><a href="">女啊讲客家话热帖儿童</a></li>
+                <li><a href="">看破女娘炮怕女的奶瓶</a></li>
+                <li><a href="">破门平精装修偶皮票</a></li>
+            </ul>
+        </div>
+        <div class="mod" style="display: none;">
+            <ul>
+                <li><a href="">今天是个好日子</a></li>
+                <li><a href="">阿斯钢AV冒泡·</a></li>
+                <li><a href="">爱的飞不冒泡么怕1</a></li>
+                <li><a href="">年开播那看来最先从</a></li>
+            </ul>
+        </div>
+        <div class="mod" style="display: none;">
+            <ul>
+                <li><a href="">啊工行沙发费sadf</a></li>
+                <li><a href="">撒旦飞洒最深的</a></li>
+                <li><a href="">破口平常珍惜哦</a></li>
+                <li><a href="">哦盘局中毫升佛</a></li>
+            </ul>
+        </div>
+        <div class="mod" style="display: none;">
+            <ul>
+                <li><a href="">阿司法局欧赔你在</a></li>
+                <li><a href="">阿萨德念佛阿萨MVP</a></li>
+                <li><a href="">行政村配黑色短发皮</a></li>
+                <li><a href="">阿斯经费价平稳竟</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
