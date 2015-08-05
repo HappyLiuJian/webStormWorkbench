@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery自定义插件</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-size: 10pt;
+        }
+        ul{
+            background-color: #e4393c;
+            cursor: pointer;
+            text-align: center;
+            list-style: none;
+            width: 200px;
+            margin: 50px auto;
+        }
+        ul li {
+            color: white;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+        (function ($) {
+            $.extend({
+                "changeFColor" : function (uLi) {
+                    uLi.css({backgroundColor : "#333"});
+                },
+
+                "changeFBack" : function (uLi) {
+                    uLi.css({backgroundColor : "#e4393c"});
+                }
+            })
+        })(jQuery);
+        $(function () {
+            $("li").bind("mouseover", function () {
+                $.changeFColor($(this));
+            })
+                    .bind("mouseout", function () {
+                        $.changeFBack($(this));
+                    })
+        })
+
+    </script>
+</head>
+<body>
+<ul>
+    <li>我是第一个列表项</li>
+    <li>我是第二个列表项</li>
+    <li>我是第三个列表项</li>
+    <li>我是第四个列表项</li>
+</ul>
+</body>
+</html>
