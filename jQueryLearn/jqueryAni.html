@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery练习动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 10pt;
+        }
+
+        .fDiv {
+            position: relative;
+            border: 2px solid #dedede;
+            cursor: pointer;
+            margin: 100px auto;
+            width: 100px;
+            height: 100px;
+            background-color: #e4393c;
+            color: white;
+            line-height: 300px;
+            text-indent: 80px;
+        }
+
+        .sDiv {
+            position: relative;
+            width: 100px;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            var $fDiv = $(".fDiv");
+            $("input").each(function (index) {
+                switch (index) {
+                    case 0:
+                        $(this).bind("click", function () {
+                            $fDiv.animate({left: '-=50px'},3000);
+                        });
+                        break;
+                    case 1:
+                        $(this).bind("click", function () {
+                            $fDiv.animate({left: '+=50px'},3000);
+                        });
+                        break;
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="fDiv"></div>
+    <div class="sDiv">
+        <input type="button" value="左移"/>
+        <input type="button" value="右移"/>
+    </div>
+</body>
+</html>
