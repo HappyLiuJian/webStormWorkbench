@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jqueryAjax</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 10pt;
+            color: #333333;
+        }
+
+        table {
+            width: 300px;
+            margin: 100px auto 10px;
+            border: 2px solid #e4393c;
+            box-shadow: #999999;
+            -moz-box-shadow: #999999;
+            -webkit-box-shadow: #999999;
+        }
+
+        table tbody {
+            text-align: center;
+        }
+
+        .clickDiv {
+            width: 300px;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .clickDiv input {
+            width: 60px;
+            cursor: pointer;
+            border: none;
+            position: absolute;
+            background-color: #0099FF;
+            border-radius: 4px;
+            color: white;
+            height: 30px;
+            top: 20px;
+            right: 0;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+        var students = [
+            {name:"刘建",id:"2012167",classes:"2012303",sex:"男"},
+            {name:"张三",id:"2012157",classes:"2012303",sex:"男"},
+            {name:"李四",id:"2012133",classes:"2012303",sex:"女"},
+            {name:"王五",id:"2012145",classes:"2012303",sex:"男"},
+            {name:"老干妈",id:"2012123",classes:"2012303",sex:"女"},
+            {name:"畜产",id:"2012178",classes:"2012303",sex:"男"}
+        ];
+
+        $(function () {
+            $("#btn").bind('click', function () {
+                var stuCon = '',
+                        $this = $(this);
+                $this.attr('disabled',true);
+                $.each(students, function (index, name) {
+                    stuCon += '<tr><td>'+name['name']+'</td><td>'+name['id']+'</td><td>'+name['classes']+
+                            '</td><td>'+name['sex']+'</td></tr>';
+
+                });
+                $("tbody").html(stuCon);
+            })
+        })
+    </script>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>学号</th>
+                <th>班级</th>
+                <th>性别</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="clickDiv">
+        <input id="btn" type="button" value="显示信息"/>
+    </div>
+</body>
+</html>
