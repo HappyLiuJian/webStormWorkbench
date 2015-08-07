@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>混合布局测试</title>
+    <style>
+        /*清除默认样式*/
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .top{
+            height: 100px;
+            background-color: blue;
+        }
+        .head{
+            height: 100px;
+            width: 800px;
+            background: orange;
+            margin: 0 auto;
+        }
+        /*单列布局样式*/
+        .main{
+            width: 800px;
+            height: 600px;
+            background-color: #ccc;
+            /*使用margin达到水平居中*/
+            margin: 0 auto;
+        }
+        .foot{
+            width: 800px;
+            height: 100px;
+            background-color: #900;
+            margin: 0 auto;
+        }
+        .left{
+            width: 200px;
+            height: 600px;
+            float: left;
+            background: yellow;
+        }
+        .right{
+            width: 600px;
+            height: 600px;
+            float: right;
+            background: #369;
+        }
+        .sub_l{
+            width: 400px;
+            height: 600px;
+            background: green;
+            float: left;
+        }
+        .sub_r{
+            width: 200px;
+            height: 600px;
+            background: #09F;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="head"></div>
+</div>
+<div class="main">
+    <div class="left"></div>
+    <div class="right">
+        <div class="sub_l"></div>
+        <div class="sub_r"></div>
+    </div>
+</div>
+<div class="foot"></div>
+</body>
+</html>
