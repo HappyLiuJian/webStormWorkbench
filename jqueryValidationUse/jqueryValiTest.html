@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery validation测试</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-size: 10pt;
+        }
+
+        #demoForm {
+            width: 200px;
+            margin: 100px auto;
+        }
+
+        #demoForm p {
+            margin: 10px 0 10px 10px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.validate.js"></script>
+    <script>
+        var validator;
+        $(function () {
+            $.validator.addMethod("testBut", function (value,element,params) {
+                var testBut = /^[0-9]{6}$/;
+                return this.optional(element) || (testBut.test(value));
+            },"请填写正确的格式");
+
+
+
+            validator =  $("#demoForm").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        //minlength: 2,
+                        //maxlength: 10,
+                        rangelength: [2,10],
+                        testBut: true
+
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 15
+                    },
+
+                    "confirm-password": {
+                        equalTo: "#password"
+                    }
+                },
+                messages:{
+                    username: {
+                        required: "用户名必须填写",
+                        //minlength: "用户名最小为2位",
+                        //maxlength: "用户名最大为10位",
+                        rangelength: "用户名应该在2到10位",
+                        remote: "用户名不存在"
+                    },
+                    password: {
+                        required: "密码必须填写",
+                        minlength: "密码最小为5位",
+                        maxlength: "密码最大为15位"
+                    },
+
+                    "confirm-password" : {
+                        equalTo : "两次输入的密码不一致"
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<form id="demoForm">
+    <fieldset>
+        <legend>用户登录</legend>
+        <p>
+            <label for="userName">用户</label>
+            <input type="text" id="userName" name="username"/>
+        </p>
+
+        <p>
+            <label for="password">密码</label>
+            <input type="text" id="password" name="password"/>
+        </p>
+
+        <p>
+            <label for="confirm-password">确认密码</label>
+            <input type="text" id="confirm-password" name="confirm-password"/>
+        </p>
+
+        <p>
+            <input type="submit" value="登陆"/>
+        </p>
+    </fieldset>
+</form>
+</body>
+</html>
