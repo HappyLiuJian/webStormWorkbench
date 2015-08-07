@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery留言板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 10pt;
+            font-family: '微软雅黑';
+        }
+
+        .wrap {
+            width: 300px;
+            margin: 100px auto;
+        }
+
+        .showBox {
+            width: 298px;
+            background-color: #dedede;
+        }
+        #send {
+            resize: none;
+            width: 298px;
+            margin: 10px auto;
+            border: 1px solid #e4393c;
+        }
+        .btn {
+            float: right;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 25px;
+            border-radius: 5px;
+            color: white;
+            background-color: #e4393c;
+        }
+        .tip {
+            display: block;
+            background-color: blue;
+            width: 100px;
+            height: 25px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#tip").ajaxStart(function () {
+                $(this).html("正在发送留言");
+            });
+            $("#tip").ajaxStop(function () {
+                $(this).html("发送完成");
+            });
+
+            $("#btn").click(function () {
+                var $send = $("#send").val();
+                if($send=='') {
+                    alert("发送内容不能为空");
+                    $("#tip").focus();
+                    return false;
+                } else {
+                    sendMessage($send);
+                }
+            })
+        });
+
+        function sendMessage(send) {
+            $.ajax({
+                type: "get",
+                url : "",
+                data : "",
+                success: function () {
+                    showMessage();
+                }
+            })
+        }
+
+        function showMessage() {
+            var $send = $("#send").val();
+            var $html = "<li>" + $send + "</li>";
+            $(".showBox").append($html);
+            $("#send").html("");
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <h3>留言记录</h3>
+    <div class="showBox"></div>
+    <h3>请输入您的留言</h3>
+    <textarea name="sendMessage" id="send" cols="30" rows="10"></textarea>
+    <input type="button" id="btn" class="btn" value="发送"/>
+    <span id="tip" class="tip"></span>
+</div>
+</body>
+</html>
