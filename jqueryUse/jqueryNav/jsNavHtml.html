@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsNav</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #contend {
+            width: 820px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #contend h1 {
+            color: #0088bb;
+            text-indent: 20px;
+            font-size: 20px;
+        }
+
+        .item {
+            padding: 20px;
+            margin: 20px;
+            border: 1px dotted #0088bb;
+        }
+
+        .item h2 {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #0088bb;
+            margin-bottom: 10px;
+        }
+
+        #contend .item li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        #contend .item li a img {
+            width: 230px;
+            height: 230px;
+            border: none;
+        }
+
+        #menu {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            margin-left: 400px;
+            width: 80px;
+        }
+
+        #menu ul li a {
+            display: block;
+            margin: 5px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333333;
+            width: 80px;
+            height: 50px;
+            line-height: 50px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        #menu ul li a:hover, #menu ul li a.current {
+            color: #FFFFFF;
+            background-color: #0088bb;
+        }
+
+        /*ie6 hack*/
+        * html, * html body {
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+
+        /*ie6 hack*/
+        * html #menu {
+            position: absolute;
+            top: expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+100+'px');
+        }
+    </style>
+    <script>
+        //获取元素
+        function getClass(obj, cls) {
+            var ele = obj.getElementsByTagName("*");
+            var result = [];
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].className == cls) {
+                    result.push(ele[i]);
+                    //console.log(result);
+                }
+            }
+        }
+
+        function hasClass(obj, cls) {
+            return obj.className.match(new RegExp("(\\s^)" + cls + "(\\s|$)"));
+        }
+
+        function removeClass(obj, cls) {
+            if (hasClass(obj, cls)) {
+                var reg = new RegExp("(\\s^)" + cls + "(\\s|$)");
+                obj.className = obj.className.replace(reg, "");
+            }
+        }
+
+        function addClass(obj, cls) {
+            if (!hasClass(obj, cls)) {
+                obj.className += "" + cls;
+            }
+        }
+
+        window.onload = function () {
+            window.onscroll = function () {
+                var top = document.documentElement ? document.documentElement.scrollTop : document.body.scrollTop;
+                var menu = document.getElementById("menu").getElementsByTagName("a");
+                //var item = getClass(document.getElementById("contend"), "item");
+                var item = document.getElementsByClassName("item");
+                //console.log(item);
+                var curId = "";
+                for (var i = 0; i < item.length; i++) {
+                    var itemNow = item[i];
+                    var itemTop = itemNow.offsetTop;
+                    if (top > itemTop - 200) {
+                        curId = itemNow.id;
+                    } else {
+                        break;
+                    }
+                }
+
+                if (curId) {
+                    for (var j = 0; j < menu.length; j++) {
+                        var menuNow = menu[j];
+                        var href = menuNow.href.split("#");
+                        if (href[href.length - 1] != curId) {
+                            //removeClass(menuNow,"current");
+                            menuNow.className = '';
+                            console.log(menuNow.className);
+                        } else {
+                            //addClass(menuNow,"current");
+                            menuNow.className = "current";
+                            //console.log(menuNow.className);
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="menu">
+    <ul>
+        <li><a href="#item1" class="current">1f 男装</a></li>
+        <li><a href="#item2">2f 女装</a></li>
+        <li><a href="#item3">3f 美妆</a></li>
+        <li><a href="#item4">4f 数码</a></li>
+        <li><a href="#item5">5f 母婴</a></li>
+    </ul>
+</div>
+<div id="contend">
+    <h1>我的购物网</h1>
+
+    <div id="item1" class="item">
+        <h2>1f 男装</h2>
+        <ul>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="1F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item2" class="item">
+        <h2>2f 女装</h2>
+        <ul>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="2F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item3" class="item">
+        <h2>3f 美妆</h2>
+        <ul>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="3F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item4" class="item">
+        <h2>4f 数码</h2>
+        <ul>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+            <li><a href="#"><img src="4F.png" alt=""/></a></li>
+        </ul>
+    </div>
+    <div id="item5" class="item">
+        <h2>5f 母婴</h2>
+        <ul>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="5F.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
