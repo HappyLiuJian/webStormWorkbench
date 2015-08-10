@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝搜索框制作</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('//at.alicdn.com/t/font_1439190303_8363333.eot'); /* IE9*/
+            src: url('//at.alicdn.com/t/font_1439190303_8363333.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('//at.alicdn.com/t/font_1439190303_8363333.woff') format('woff'), /* chrome、firefox */
+            url('//at.alicdn.com/t/font_1439190303_8363333.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('//at.alicdn.com/t/font_1439190303_8363333.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-size: 10pt;
+            font-family: '微软雅黑';
+        }
+
+        a {
+            text-decoration: none;
+            color: #6c6c6c;
+        }
+
+        .search_container {
+            position: relative;
+        }
+        .search_tips {
+            float: right;
+            padding: 3px 0 0 15px;
+        }
+
+        .search_btn {
+            float: right;
+        }
+
+        .btn_search {
+            background: url(http://gtms01.alicdn.com/tps/i1/T1qyj8Fc8aXXc4E9bI-400-300.png);
+            width: 100px;
+            height: 45px;
+            background-position: 0 -200px;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .search_common_panel {
+            height: 39px;
+            background-color: #f50;
+            overflow: hidden;
+            padding: 3px 0 3px 77px;
+        }
+
+        .search_common_panel input {
+            height: 39px;
+            line-height: 39px;
+            width: 100%;
+            border: 0 none;
+            outline: 0;
+            background-color: #fff;
+
+        }
+
+        .search_common_panel i {
+            position: absolute;
+            top: 14px;
+            left: 86px;
+            z-index: 2;
+        }
+        .iconFont {
+            font-family: iconfont;
+            font-size: 12px;
+            font-style: normal;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .search_list {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 74px;
+            height: 39px;
+            overflow: hidden;
+        }
+
+        .search_list ul li {
+            height: 39px;
+            line-height: 39px;
+            overflow: hidden;
+            background-color: white;
+            border-left: 1px solid #f6f6f6;
+            border-right: 1px solid #e5e5e5;
+            text-align: center;
+        }
+        
+        .search_list ul li a {
+            color: #6c6c6c;
+        }
+
+        .search_list ul .selected {
+            background: #f6f6f6;
+        }
+
+        .trigger_hover {
+            height: auto;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var uL = document.getElementById('search_tab');
+            var tab1 = document.getElementById('tab_1');
+            var tab2 = document.getElementById('tab_2');
+            uL.onmouseover = function () {
+                this.className += ' trigger_hover';
+            };
+
+            uL.onmouseout = function () {
+                this.className = 'search_list';
+            };
+
+            tab1.onmouseover = function () {
+                if(this.className.indexOf('selected')<0) {
+                    this.className += ' selected';
+                }
+            };
+
+            tab1.onmouseout = function () {
+                this.className = '';
+            };
+
+            tab2.onmouseover = function () {
+                if(this.className.indexOf('selected')<0) {
+                    this.className += ' selected';
+                }
+            };
+
+            tab2.onmouseout = function () {
+                this.className = '';
+            };
+
+            tab1.onclick = function () {
+                uL.className = 'search_list';
+            };
+
+            tab2.onclick = function () {
+                uL.className = 'search_list';
+                var flag = this.childNodes[0].text;
+                //console.log(flag);
+                this.childNodes[0].text = tab1.childNodes[0].text;
+                tab1.childNodes[0].text = flag;
+            };
+
+            document.onclick = function () {
+                uL.className = 'search_list';
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="search_container">
+    <div id="search_tab" class="search_list">
+        <ul>
+            <li id="tab_1" class="selected"><a href="#">宝贝</a></li>
+            <li id="tab_2"><a href="#">店铺</a></li>
+        </ul>
+    </div>
+    <div class="search_panel">
+        <form action="">
+            <div class="search_tips">
+                <a href="#">高级<br>搜索</a>
+            </div>
+            <div class="search_btn">
+                <button class="btn_search" value="submit"></button>
+            </div>
+            <div class="search_common_panel">
+                <input type="text"/>
+                <i class="iconFont">&#xe600</i>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

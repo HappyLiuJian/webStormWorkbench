@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>js实现动态搜索框（bing）</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #333333;
+        }
+
+        .bg-div {
+            background-image: url(images/river.jpg);
+            width: 1680px;
+            height: 1050px;
+            -webkit-background-size: 100% auto;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            margin: 0 auto;
+        }
+
+        .logo {
+            background-image: url(images/logo.png);
+            width: 107px;
+            height: 53px;
+            float: left;
+            margin: -4px 18px 0 0;
+        }
+
+        form {
+            float: left;
+            background-color: #fff;
+        }
+
+        .searchInputText {
+            border: none;
+            float: left;
+            height: 29px;
+            line-height: 29px;
+            outline: none;
+            width: 350px;
+            padding: 3px 0 3px 5px;
+        }
+
+        .searchInputButton {
+            border: none;
+            float: left;
+            background-image: url(images/search-button.png);
+            width: 29px;
+            height: 29px;
+            margin: 3px 2px 3px 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .search-box {
+            position: absolute;
+            top: 200px;
+            left: 300px;
+        }
+
+        .suggest {
+            width: 388px;
+            background-color: #fff;
+            border: 1px solid #999;
+        }
+
+        .suggest ul {
+            list-style: none;
+
+        }
+
+        .suggest ul li {
+            padding: 3px;
+            line-height: 25px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .suggest ul li:hover {
+            text-decoration: underline;
+            background-color: #e5e5e5;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script>
+        //获取id元素
+        function getDom(id) {
+            var nowDom;
+            nowDom = document.getElementById(id) || document;
+            return nowDom;
+        }
+        //DOM2及添加事件
+        function addEvent(ele,eve,fn) {
+            if (ele.addEventListener) {
+                ele.addEventListener(eve,fn,false);
+                console.log(1);
+            } else if (ele.attachEvent) {
+                ele.attachEvent('on' + eve,fn);
+            } else {
+                ele['on' + eve] = fn;
+            }
+        }
+        //获取左边距离
+        function getEleLeft(id) {
+            var now = document.getElementById(id);
+            var nowLeft = now.offsetLeft;
+            var oParent = now.offsetParent;
+
+            while(oParent) {
+                nowLeft += oParent.offsetLeft;
+                oParent = oParent.offsetParent;
+            }
+
+            return nowLeft;
+        }
+        //获取右边距离
+        function getEleTop(id) {
+            var now = document.getElementById(id);
+            var nowTop = now.offsetTop;
+            var oParent = now.offsetParent;
+
+            while(oParent) {
+                nowTop += oParent.offsetTop;
+                oParent = oParent.offsetParent;
+            }
+
+            return nowTop;
+        }
+
+        window.onload = function () {
+            addEvent('search-input','keyup', function () {
+                console.log(1);
+                getDom('search-suggest').style.top = getEleTop('search-form') + getDom('search-form').offsetHeight + 'px';
+                getDom('search-suggest').style.left = getEleLeft('search-form');
+                getDom('search-suggest').style.position = 'absolute';
+                getDom('search-suggest').style.display = 'block';
+            })
+        }
+    </script>
+</head>
+<body>
+<div class="bg-div">
+    <div class="search-box">
+        <div class="logo"></div>
+        <form class="search-form" id="search-form" action="https://cn.bing.com/search" target="_blank">
+            <input type="text" class="searchInputText" id="search-input"/>
+            <input type="submit" value="" class="searchInputButton"/>
+        </form>
+    </div>
+</div>
+<div class="suggest" id="search-suggest" style="display: none;">
+    <ul id="search-result">
+        <li>搜索结果1</li>
+        <li>搜索结果2</li>
+        <li>搜索结果3</li>
+        <li>搜索结果4</li>
+        <li>搜索结果5</li>
+    </ul>
+</div>
+</body>
+</html>
