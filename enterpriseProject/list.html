@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻列表</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="js/setHomeSetFav.js"></script>
+</head>
+<body>
+<div class="top">
+    <div class="top_content">
+        <ul>
+            <li><a href="#">联系我们</a></li>
+            <li><a href="#" onclick="AddFavorite(window.location,document.title)">加入收藏</a></li>
+            <li><a href="#" onclick="SetHome(window.location)">设为首页</a></li>
+        </ul>
+    </div>
+</div>
+<!-- top栏 -->
+<div class="wrap">
+    <div class="logo">
+        <div class="logo_left">
+            <img src="images/logo.jpg" alt="慕课网"/>
+        </div>
+        <div class="logo_right">
+            <img src="images/tel.jpg" alt="服务热线"/>服务热线: <span class="tel">189-8907-660</span>
+        </div>
+    </div>
+    <!--logo-->
+    <div class="nav">
+        <div class="nav_left"></div>
+        <div class="nav_mid">
+            <div class="nav_mid_left">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="list.html">关于慕课</a></li>
+                    <li><a href="list.html">新闻动态</a></li>
+                    <li><a href="list.html">课程中心</a></li>
+                    <li><a href="list.html">在线课程</a></li>
+                    <li><a href="list.html">人才招聘</a></li>
+                </ul>
+            </div>
+            <div class="nav_mid_right">
+                <form action="" method="post">
+                    <label>
+                        <input type="text" class="search_text"/>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <!--Nav_middle-->
+        <div class="nav_right"></div>
+    </div>
+    <!--Nav-->
+    <div id="ad" class="ad">
+        <img src="images/ad.jpg" alt=""/>
+    </div>
+    <!--图片-->
+    <div class="list_main">
+        <div class="news_type">
+            <h2>新闻中心</h2>
+        </div>
+        <div class="list_box"></div>
+    </div>
+</div>
+<!--wrap-->
+<div class="copyright">
+    <div class="copyright_content">
+        <ul>
+            <li><a href="#">关于</a>
+                <ul>
+                    <li>品牌故事</li>
+                    <li>联系我们</li>
+                    <li>加入我们</li>
+                    <li>版权声明</li>
+                </ul>
+            </li>
+            <li><a href="#">课程</a>
+                <ul>
+                    <li>PHP开发</li>
+                    <li>前端开发</li>
+                    <li>JAVA开发</li>
+                    <li>Android开发</li>
+                </ul>
+            </li>
+            <li><a href="#">关注</a>
+                <ul>
+                    <li>新浪微博</li>
+                    <li>腾讯微博</li>
+                    <li>企业微信</li>
+                    <li>QQ空间</li>
+                </ul>
+            </li>
+            <li><a href="#">留言</a>
+                <ul>
+                    <li>意见反馈</li>
+                    <li>问题留言</li>
+                    <li>媒体联络</li>
+                    <li>在线客服</li>
+                </ul>
+            </li>
+            <li><a href="#"><img src="images/weixin.png" alt=""/>微信关注</a>
+                <ul>
+                    <li><img src="images/qrcode.jpg" alt=""/></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

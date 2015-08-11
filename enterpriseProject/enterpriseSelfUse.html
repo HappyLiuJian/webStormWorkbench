@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人实践</title>
+    <link rel="stylesheet" href="css/self.css"/>
+    <link rel="stylesheet" href="js/mf-pattern/mF_fancy.css"/>
+    <script type="text/javascript" src="js/myfocus-2.0.1.min.js"></script>
+    <script type="text/javascript" src="js/mf-pattern/mF_fancy.js"></script>
+    <script>
+        //焦点图设置，采用默认设置
+        myFocus.set({
+            id : 'focus'
+        });
+
+        //实现每一个按钮的颜色变化并且默认第一个为真
+        window.onload = function() {
+            var tags = document.getElementById("nav_btn").getElementsByTagName("li");
+            for(var i = 0; i < tags.length; i ++) {
+                tags[i].onmouseover = function () {
+                    var that = this;
+                    if(that.className != 'select') {
+                        for (var j = 0; j < tags.length; j ++) {
+                            tags[j].className = '';
+                        }
+                        that.className = 'select';
+                    }
+                }
+
+                tags[i].onmouseout = function () {
+                    this.className = '';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="head">
+    <div class="nav">
+        <img src="http://img.mukewang.com/53edadad0001efe202000070.jpg" alt="慕课网"/>
+        <ul id="nav_btn">
+            <li class="select"><a href="#">首页</a></li>
+            <li><a href="#">产品特色</a></li>
+            <li><a href="#">解决方案</a></li>
+            <li><a href="#">产品价格</a></li>
+            <li><a href="#">帮助中心</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </div>
+    <!--导航结束-->
+    <div class="focus" id="focus">
+        <div class="loading"><img src="http://img.mukewang.com/53edad8c000175cb00300029.jpg" alt="正在加载，请稍后"/></div>
+        <div class="pic">
+            <ul>
+                <li><a href="#"><img src="http://img.mukewang.com/53edad3e0001afad10000318.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="http://img.mukewang.com/53edad2c0001b61310000314.jpg" alt=""/></a></li>
+                <li><a href="#"><img src="http://img.mukewang.com/53edad1600019ae910000310.jpg" alt=""/></a></li>
+            </ul>
+        </div>
+    </div>
+    <!--焦点图结束-->
+</div>
+<!--头部结束-->
+<div class="main">
+    <div class="scroll">
+        <div class="scroll_title"><p>实时消息</p></div>
+        <div id="scroll_content" class="scroll_content">
+            <ul>
+                <li>今天lol更新啦！</li>
+                <li>今天dota更新啦！</li>
+                <li>今天手机更新啦！</li>
+                <li>今天电脑更新啦！</li>
+                <li>今天没有啥更新啦！</li>
+            </ul>
+        </div>
+    </div>
+    <div class="course">
+        <div class="course_left">
+            <img src="http://img.mukewang.com/53edad54000119fb03300130.jpg" alt="bootstrap"/>
+            <p>玩转BootStrap</p>
+        </div>
+        <div class="course_mid">
+            <img src="http://img.mukewang.com/53edad690001260a03300130.jpg" alt="实战"/>
+            <p>企业网站实战</p>
+        </div>
+        <div class="course_right">
+            <img src="http://img.mukewang.com/53edad7a0001cde803300130.jpg" alt="JavaScript"/>
+            <p>JavaScript基础</p>
+        </div>
+    </div>
+    <!--课程结束-->
+    <div class="news">
+        <div class="news_left">
+            <div class="title"><h4>新闻中心</h4></div>
+            <div class="news1">
+                <div class="date">8月<br>23日</div>
+                <br>
+                <p><strong>学习计划之安卓工程师初养成</strong><br>想成为Android工程师?想开发一款专属于你的App?
+                没有基础的你，应该如何学起?</p>
+            </div>
+            <div class="news2">
+                <div class="date">8月<br>23日</div>
+                <br>
+                <p><strong>学习计划之安卓工程师初养成</strong><br>想成为Android工程师?想开发一款专属于你的App?
+                    没有基础的你，应该如何学起?</p>
+            </div>
+            <div class="news3">
+                <div class="date">8月<br>23日</div>
+                <br>
+                <p><strong>学习计划之安卓工程师初养成</strong><br>想成为Android工程师?想开发一款专属于你的App?
+                    没有基础的你，应该如何学起?</p>
+            </div>
+        </div>
+        <!--新闻第一栏结束-->
+        <div class="news_mid">
+            <div class="title"><h4>热门活动</h4></div>
+            <div class="news_mid_content">
+                <img src="http://img.mukewang.com/53edacdd0001b8e804820302.jpg" alt=""/>
+                <p>慕课网2048游戏源码征集</p>
+                <p>慕课网2048游戏源码征集</p>
+                <p>慕课网2048游戏源码征集</p>
+                <p>慕课网2048游戏源码征集</p>
+            </div>
+        </div>
+        <!--新闻第二栏结束-->
+        <div class="news_right">
+            <div class="title"><h4>联系我们</h4></div>
+            <p>讲师招募<br>邹同学<br>电话：18911888156<br>QQ：576264119<br>E-mail：daisy@imooc.com</p><br>
+            <p>网站合作<br>吕同学<br>电话：18911888156<br>QQ：576264119<br>E-mail：daisy@imooc.com</p>
+        </div>
+    </div>
+</div>
+<div class="foot">
+    <p>MadeBy HappyLiuJian 2015/8/11 @mooc.com</p>
+</div>
+<script>
+    //滚动操作
+    var area = document.getElementById("scroll_content");
+    var liH = 30;       //滚动高度
+    var timer = null;
+    var speed = 50;     //滚动速度
+    var delay = 2000;   //滚动时延
+
+    //克隆操作，实现循环滚动
+    area.innerHTML += area.innerHTML;
+    area.scrollTop = 0;
+    function startMove() {
+        area.scrollTop ++;
+        timer = setInterval('scrollUp()',speed);
+    }
+    function scrollUp() {
+        //area.scrollTop ++;
+        if(area.scrollTop % liH == 0) {
+            clearInterval(timer);
+            setTimeout('startMove()',delay);
+        } else {
+            area.scrollTop ++;
+            if(area.scrollTop >= area.scrollHeight/2) {
+                area.scrollTop = 0;
+            }
+        }
+    }
+
+    //初始化
+    setTimeout('startMove()',delay);
+</script>
+</body>
+</html>
