@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas学习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .canvas {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #e4393c;
+        }
+    </style>
+</head>
+<body>
+    <!--不要用css指定canvas大小，这会导致分辨率问题，所以直接指定宽高属性-->
+    <canvas id="canvas" class="canvas" width="1024" height="768"></canvas>
+    <script>
+        window.onload = function () {
+            //初始化一个画布，用来使用js进行绘图操作，此时想象一张白纸在面前
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            //开始一组新的状态路径
+            context.beginPath();
+            //提起笔到某个点上方，点一个点（隐藏的点）
+            context.moveTo(100,100);
+
+            //移动笔到某个点上方，点一个点（隐藏的点）
+            context.lineTo(300,300);
+            //移动笔到某个点上方，点一个点（隐藏的点）
+            context.lineTo(100,300);
+            //继续
+            context.lineTo(100,100);
+
+            //换一只粗的笔
+            context.lineWidth = 5;
+            //换一只有颜色的彩笔
+            context.strokeStyle = "#005588";
+            //换一只有颜色的填充笔
+            context.fillStyle = "#9c439d";
+            //使用彩笔把线连起来
+            context.stroke();
+            //使用填充笔把所有点围起来的区域填充了，如果没有围起来，自动在最后一个点后面添加第一个点的坐标形成多边形
+            context.fill();
+            //关闭当前状态路径
+            context.closePath();
+
+            context.beginPath();
+            context.lineWidth = 5;
+            context.strokeStyle = "#903456";
+            context.arc(500,400,200,0,1.5*Math.PI);
+            context.stroke();
+
+            for(var i = 0; i < 10 ; i++) {
+                context.beginPath();
+                context.fillStyle = "#9343c9";
+                context.arc(50+i*100,400,40,0,2*Math.PI*(i+1)/10,true);
+                context.closePath();
+                context.fill();
+            }
+        }
+    </script>
+</body>
+</html>

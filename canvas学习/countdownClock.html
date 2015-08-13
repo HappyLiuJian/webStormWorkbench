@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas绘制倒计时时钟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        /*.canvas {
+            display: block;
+            margin: 60px auto;
+        }*/
+    </style>
+</head>
+<body>
+<canvas id="canvas" class="canvas"></canvas>
+<script type="text/javascript" src="digit.js"></script>
+<script>
+
+    //更改canvas宽度使得屏幕自适应
+    var window_width = document.documentElement.clientWidth || document.body.clientWidth;
+    var window_height = document.documentElement.clientHeight || document.body.clientHeight;
+    var r = Math.round(window_width * 4 / 5 / 108) - 1;
+    var margin_top = Math.round(window_height / 5);
+    var margin_left = Math.round(window_width / 10);
+    var timer = null;
+
+    const endTime = new Date(2015, 7, 13, 16, 46, 56);
+    var curSecond = 0;
+
+    var balls = [];
+    const colors = ["#33b5e5", "#0099cc", "#aa66cc", "#99cc00", "#669900", "#ffbb33", "#ff8800"];
+
+
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+
+        canvas.width = window_width;
+        canvas.height = window_height;
+
+        curSecond = getCurSecond();
+
+        //clearInterval(timer);
+        timer = setInterval(function () {
+            draw(context);
+            update();
+        }, 50);
+
+    };
+
+    //判断时间是否需要更新
+    function update() {
+        var nextSecond = getCurSecond();
+
+        var nextHour = parseInt(nextSecond / 3600);
+        var nextMinute = parseInt((nextSecond - nextHour * 3600) / 60);
+        var nextsecond = parseInt(nextSecond % 60);
+
+        var curHour = parseInt(curSecond / 3600);
+        var curMinute = parseInt((curSecond - curHour * 3600) / 60);
+        var cursecond = parseInt(curSecond % 60);
+
+        if (nextsecond != cursecond) {
+            if (parseInt(curHour / 10) != parseInt(nextHour / 10)) {
+                addBalls(margin_left, margin_top, parseInt(curHour / 10));
+            }
+            if (parseInt(curHour % 10) != parseInt(nextHour % 10)) {
+                addBalls(margin_left + 15 * (r + 1), margin_top, parseInt(curHour % 10));
+            }
+            if (parseInt(curMinute / 10) != parseInt(nextMinute / 10)) {
+                addBalls(margin_left + 39 * (r + 1), margin_top, parseInt(curMinute / 10));
+            }
+            if (parseInt(curMinute % 10) != parseInt(nextMinute % 10)) {
+                addBalls(margin_left + 54 * (r + 1), margin_top, parseInt(curMinute % 10));
+            }
+            if (parseInt(cursecond / 10) != parseInt(nextsecond / 10)) {
+                addBalls(margin_left + 78 * (r + 1), margin_top, parseInt(cursecond / 10));
+            }
+            if (parseInt(cursecond % 10) != parseInt(nextsecond % 10)) {
+                addBalls(margin_left + 93 * (r + 1), margin_top, parseInt(cursecond % 10));
+            }
+
+            curSecond = nextSecond;
+        }
+
+        updateBalls();
+    }
+
+    //小球运动函数
+    function updateBalls() {
+        for (var i = 0; i < balls.length; i++) {
+            balls[i].x += balls[i].vx;
+            balls[i].y += balls[i].vy;
+            balls[i].vy += balls[i].g;
+
+            if (balls[i].y >= window_height - r) {
+                balls[i].y = window_height - r;
+                balls[i].vy = -balls[i].vy * 0.75;
+            }
+
+            //删除小球，避免内存占用过大
+            var count = 0;
+            //判断处在屏幕内的小球，记住有多少个，也就是count的值
+            for (var j = 0; j < balls.length; j++) {
+                if (balls[j].x + r > 0 && balls[j].x - r < window_width) {
+                    balls[count++] = balls[j];
+                }
+            }
+
+            //超过count的小球都从数组中删除
+            while (balls.length > Math.min(300, count)) {
+                balls.pop();
+            }
+        }
+    }
+    //添加小球
+    function addBalls(x, y, num) {
+        for (var i = 0; i < digit[num].length; i++) {
+            for (var j = 0; j < digit[num][i].length; j++) {
+                if (digit[num][i][j] == 1) {
+
+                    //初始化小球，用到了很多数学随机，使各个小球有不同的风格
+                    var ball = {
+                        x: x + j * 2 * (r + 1) + (r + 1),
+                        y: y + i * 2 * (r + 1) + (r + 1),
+                        g: 1.5 + Math.random(),
+                        vx: Math.pow(-1, Math.ceil(Math.random() * 1000)) * 4,
+                        vy: -5,
+                        color: colors[Math.floor(Math.random() * colors.length)]
+                    };
+
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+    //获取现在离结束时间还有多少秒
+    function getCurSecond() {
+        var cur = new Date();
+        var ret = endTime.getTime() - cur.getTime();
+        ret = Math.round(ret / 1000);
+        return ret >= 0 ? ret : 0;
+    }
+
+    //画画函数，负责时钟和小球的绘制
+    function draw(ctx) {
+        //刷新canvas区域
+        ctx.clearRect(0, 0, window_width, window_height);
+        var hour = parseInt(curSecond / 3600);
+        var minute = parseInt((curSecond - hour * 3600) / 60);
+        var second = parseInt(curSecond % 60);
+
+        drawClock(margin_left, margin_top, parseInt(hour / 10), ctx);
+        drawClock(margin_left + 15 * (r + 1), margin_top, parseInt(hour % 10), ctx);
+        drawClock(margin_left + 30 * (r + 1), margin_top, 10, ctx);
+        drawClock(margin_left + 39 * (r + 1), margin_top, parseInt(minute / 10), ctx);
+        drawClock(margin_left + 54 * (r + 1), margin_top, parseInt(minute % 10), ctx);
+        drawClock(margin_left + 69 * (r + 1), margin_top, 10, ctx);
+        drawClock(margin_left + 78 * (r + 1), margin_top, parseInt(second / 10), ctx);
+        drawClock(margin_left + 93 * (r + 1), margin_top, parseInt(second % 10), ctx);
+
+        for (var i = 0; i < balls.length; i++) {
+            ctx.fillStyle = balls[i].color;
+
+            ctx.beginPath();
+            ctx.arc(balls[i].x, balls[i].y, r, 0, 2 * Math.PI, true);
+            ctx.closePath();
+
+            ctx.fill();
+        }
+    }
+
+    //x,y代表左上角顶点
+    function drawClock(x, y, num, ctx) {
+        ctx.fillStyle = "#9c7363";
+        for (var i = 0; i < digit[num].length; i++) {
+            for (var j = 0; j < digit[num][i].length; j++) {
+                if (digit[num][i][j] == 1) {
+                    ctx.beginPath();
+                    ctx.arc(x + j * 2 * (r + 1) + (r + 1), y + i * 2 * (r + 1) + (r + 1), r, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

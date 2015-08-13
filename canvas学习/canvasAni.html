@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas物理动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .canvas {
+            display: block;
+            margin: 60px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" class="canvas"></canvas>
+    <script>
+        //定义一个球，包括初始坐标以及半径，横轴速度，纵轴速度和纵轴加速度
+        var ball = { x:512,y:100,r:20,g:0.1,vx:-6,vy:-0.6,color:"#005588"};
+
+        window.onload = function() {
+            var canvas = document.getElementById("canvas");
+            canvas.width = 1024;
+            canvas.height = 768;
+
+            var context = canvas.getContext("2d");
+
+            setInterval(function () {
+                draw(context);
+                update();
+            },5)
+        };
+
+        //更新函数，规定小球的速度的变化，决定小球的运动特性
+        function update() {
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+            ball.vy += ball.g;
+
+            if(ball.y >= 768-ball.r) {
+                ball.y = 768 - ball.r;
+                ball.vy = - ball.vy*0.7;
+                if(Math.abs(ball.vy) <= 0.01) {
+                    ball.vy = 0;
+                }
+                ball.vx = ball.vx*0.7;
+                if(Math.abs(ball.vx) <= 0.01) {
+                    ball.vx = 0;
+                }
+            }
+
+            if(ball.x <= ball.r) {
+                ball.x = ball.r;
+                ball.vx = -ball.vx*0.7;
+            } else if (ball.x >= 1024-ball.r) {
+                ball.x = 1024-ball.r;
+                ball.vx = -ball.vx*0.7;
+            }
+
+        }
+
+        //画出小球，每次都要刷新画布
+        function draw(ctx) {
+            ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+
+            ctx.fillStyle = ball.color;
+            ctx.beginPath();
+            ctx.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+            ctx.closePath();
+
+            ctx.fill();
+        }
+    </script>
+</body>
+</html>

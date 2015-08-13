@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas画七巧板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .canvas {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #dedede;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" class="canvas" width="800" height="800">
+        您的浏览器不支持canvas，请更新你的浏览器试试!
+    </canvas>
+    <script>
+        //保存要画的区域的坐标和颜色信息
+        var tanGram = [
+            {p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:"#caff67"},
+            {p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:"#67becf"},
+            {p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:"#ef3d61"},
+            {p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],color:"#f9f51a"},
+            {p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:"#a594c0"},
+            {p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:"#fa8ecc"},
+            {p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:"#f6ca29"}
+        ];
+
+        //初始化并调用画画函数
+        window.onload = function () {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+
+            for(var i = 0; i < tanGram.length; i++) {
+                draw(tanGram[i] , context);
+            }
+        };
+
+        //canvas绘图函数
+        function draw(tanG,con) {
+            con.beginPath();
+            con.moveTo(tanG.p[0].x,tanG.p[0].y);
+            for (var j = 1; j < tanG.p.length; j++) {
+                con.lineTo(tanG.p[j].x,tanG.p[j].y);
+            }
+            con.lineTo(tanG.p[0].x,tanG.p[0].y);
+            con.fillStyle = tanG.color;
+            //con.stroke();
+            con.fill();
+
+            con.strokeStyle = "#000";
+            con.stroke();
+            con.closePath();
+        }
+    </script>
+</body>
+</html>
