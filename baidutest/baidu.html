@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仿作百度首页</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .header{ font-size: 14px; padding: 20px; word-spacing: 4px; position: relative;}
+        .header img{height: 14px;}
+        .header .left{width: 300px; float: left; height: 14px;}
+        .header .right{position: absolute; right: 10px; height: 14px;}
+        .header a{color: black;}
+        .header .strong{font-weight: bold;}
+        .header .menu{background-color: #0099FF; border: hidden; width: 60px; height: 20px;}
+        .header .menu #menu2{color: white;}
+        .main{clear: both; width: 800px; margin: 0 auto;}
+        .main img{margin: 200px 290px 10px 290px}
+        .main .inputSpan{width: 600px; height: 30px;}
+        .main #searchInput{width: 600px; height: 30px;}
+        .main #searchButton{height: 34px;margin-left: -10px;width: 90px;background-color: #0099FF;color: white;font-size: 16px; border: 1px solid #0099FF}
+        .main form{margin-left: 55px;}
+        .footer{position: absolute; bottom: 44px;text-align: center;width: 100%;}
+    </style>
+</head>
+<body>
+<div class="header">
+    <span class="left">
+        <lable>内江:</lable>
+        <img src="天气.png" alt="雨天"/>
+        <span></span>
+        <a href="http://vip.baidu.com/treasure?vip_frm=super_box">宝箱</a>
+        <a href="">换肤</a>
+        <a href="">消息</a>
+        <a href="">显示卡片</a>
+    </span>
+    <span class="right">
+        <a class="strong" href="http://news.baidu.com/">新闻</a>
+        <a class="strong" href="http://www.hao123.com/">hao123</a>
+        <a class="strong" href="http://map.baidu.com/">地图</a>
+        <a class="strong" href="http://v.baidu.com/">视频</a>
+        <a class="strong" href="http://tieba.baidu.com/">贴吧</a>
+        <a href="http://i.baidu.com/">刘三刀ok</a>
+        <a href="">设置</a>
+        <button class="menu"><a id="menu2" href="">更多产品</a></button>
+    </span>
+</div>
+<div class="main">
+    <img src="baidu.png" alt="百度首页"/>
+    <form action="">
+        <span class="inputSpan">
+            <input type="text" name="search" id="searchInput"/>
+        </span>
+        <span id="su">
+            <input type="submit" id="searchButton" value="百度一下"/>
+        </span>
+    </form>
+</div>
+<div class="footer">
+    <a href="">设为首页</a>
+    <p>@2015 Baidu 使用百度前必读 意见反馈 京ICP证030173号</p>
+</div>
+</body>
+</html>
