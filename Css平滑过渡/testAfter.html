@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试after选择器</title>
+    <style>
+        p:after {
+            content:"niubi"
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var p = document.getElementById("poi");
+            console.log(p.innerText);
+        }
+    </script>
+</head>
+<body>
+    <p id="poi">这是一个文本</p>
+</body>
+</html>
