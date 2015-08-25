@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cssSprite2</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .wrap{width: 200px;background-color: rgb(235,243,250);}
+        .wrap form{width: 180px; margin: 0 auto; overflow: hidden; font-size: 10px;padding: 5px;
+        border-bottom: 1px solid #dedede;}
+        .wrap .getIn{margin: 5px 5px 10px 5px; height: 30px;}
+        .wrap .getInCheck{margin: 0 5px 10px;float: left;}
+        .wrap .textDis{font-size: 8px;}
+        .wrap a{float: right; color: #0099FF;}
+        button{background: url("http://img.mukewang.com/539a972b00013e9102280177.jpg"); }
+        .wrap .loginButton{margin: 5px 5px 10px 5px; height: 30px; width: 173px;
+        background-position: -4px -4px; border: none;}
+        .registerButton{height: 30px; width: 173px;
+            background-position: -4px -42px; border: none;margin-left: 14px;margin-top: 10px;margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <form action="">
+        <input type="text" class="getIn" placeholder="   邮箱/手机号/用户名"/>
+        <input type="text" class="getIn" placeholder="   请输入密码"/>
+        <input type="checkbox" class="getInCheck"/>下次自动登陆
+        <a href="" class="textDis">忘记密码？</a>
+        <button type="submit" class="loginButton"></button>
+    </form>
+    <button class="registerButton"></button>
+</div>
+</body>
+</html>
